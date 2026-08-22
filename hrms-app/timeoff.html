@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Time Off · Altruistic Deer HRMS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/shell.css" />
+</head>
+<body class="app" data-page="timeoff">
+
+<header class="topnav">
+  <div class="brand">
+    <div class="mark">AD</div>
+    <div class="name">Altruistic Deer</div>
+  </div>
+  <nav>
+    <a href="employees.html" data-tab="employees">Employees</a>
+    <a href="attendance.html" data-tab="attendance">Attendance</a>
+    <a href="timeoff.html" data-tab="timeoff">Time Off</a>
+  </nav>
+  <div class="spacer"></div>
+  <div class="systray">
+    <span class="since" id="systraySince"></span>
+    <button id="systrayBtn" class="checked-out"><span class="pulse"></span>Check In</button>
+  </div>
+  <div class="avatar-wrap">
+    <button class="avatar-btn" id="avatarBtn" aria-haspopup="true" aria-label="Account menu">
+      <span id="avatarDot" class="status-dot absent"></span>
+    </button>
+    <div class="avatar-menu" id="avatarMenu">
+      <div class="who">
+        <div class="n" id="menuName">—</div>
+        <div class="r" id="menuRole">—</div>
+      </div>
+      <a href="profile.html">My Profile</a>
+      <button class="logout" id="logoutBtn">Log Out</button>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <div class="page-head">
+    <h1>Time Off</h1>
+    <div class="page-toolbar">
+      <button class="btn-new" id="newBtn">+ New</button>
+    </div>
+  </div>
+
+  <div class="balance-row">
+    <div class="balance-card">
+      <div class="type">Paid Time Off</div>
+      <div class="days" id="balPaid">—<span> days available</span></div>
+    </div>
+    <div class="balance-card">
+      <div class="type">Sick Leave</div>
+      <div class="days" id="balSick">—<span> days available</span></div>
+    </div>
+  </div>
+
+  <div class="calendar-view">
+    <div class="cal-head">
+      <h3 id="calMonthLabel">—</h3>
+      <div class="cal-nav">
+        <button id="calPrev" aria-label="Previous month">←</button>
+        <button id="calNext" aria-label="Next month">→</button>
+      </div>
+    </div>
+    <div class="cal-grid" id="calGrid"></div>
+  </div>
+
+  <div class="tolist">
+    <table>
+      <thead>
+        <tr>
+          <th id="colName">Employee</th>
+          <th>Start</th>
+          <th>End</th>
+          <th>Days</th>
+          <th>Type</th>
+          <th>Status</th>
+          <th id="colAction" style="display:none;">Action</th>
+        </tr>
+      </thead>
+      <tbody id="toBody"></tbody>
+    </table>
+  </div>
+</main>
+
+<!-- request modal -->
+<div class="modal-backdrop to-modal" id="toModalBackdrop">
+  <div class="modal">
+    <div class="modal-head-simple">
+      <h3>Time Off Request</h3>
+      <button id="toModalClose" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="field-line">
+        <label>Employee</label>
+        <input type="text" id="toEmployee" readonly />
+      </div>
+      <div class="field-line">
+        <label>Time off type</label>
+        <select id="toType">
+          <option>Paid Time Off</option>
+          <option>Sick Leave</option>
+          <option>Unpaid Leave</option>
+        </select>
+      </div>
+      <div class="to-two">
+        <div class="field-line">
+          <label>Validity period — from</label>
+          <input type="date" id="toStart" />
+        </div>
+        <div class="field-line">
+          <label>To</label>
+          <input type="date" id="toEnd" />
+        </div>
+      </div>
+      <div class="field-line">
+        <label>Allocation</label>
+        <input type="text" id="toAllocation" readonly />
+      </div>
+      <div class="field-line">
+        <label>Attachment <span style="font-weight:400;color:var(--text-dim);">(for sick leave certificate)</span></label>
+        <div class="file-row">
+          <input type="file" id="toAttachment" />
+        </div>
+      </div>
+      <div class="error-msg" id="toError" style="margin-bottom:8px;"></div>
+      <div class="modal-actions">
+        <button class="btn-secondary" id="toDiscard" type="button">Discard</button>
+        <button class="btn-primary-sm" id="toSubmit" type="button">Submit request</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/auth-core.js"></script>
+<script src="js/shell.js"></script>
+<script src="js/timeoff.js"></script>
+</body>
+</html>

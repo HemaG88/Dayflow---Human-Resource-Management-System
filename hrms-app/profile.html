@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Profile · Altruistic Deer HRMS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/shell.css" />
+</head>
+<body class="app" data-page="profile">
+
+<header class="topnav">
+  <div class="brand">
+    <div class="mark">AD</div>
+    <div class="name">Altruistic Deer</div>
+  </div>
+  <nav>
+    <a href="employees.html" data-tab="employees">Employees</a>
+    <a href="attendance.html" data-tab="attendance">Attendance</a>
+    <a href="timeoff.html" data-tab="timeoff">Time Off</a>
+  </nav>
+  <div class="spacer"></div>
+  <div class="systray">
+    <span class="since" id="systraySince"></span>
+    <button id="systrayBtn" class="checked-out"><span class="pulse"></span>Check In</button>
+  </div>
+  <div class="avatar-wrap">
+    <button class="avatar-btn" id="avatarBtn" aria-haspopup="true" aria-label="Account menu">
+      <span id="avatarDot" class="status-dot absent"></span>
+    </button>
+    <div class="avatar-menu" id="avatarMenu">
+      <div class="who">
+        <div class="n" id="menuName">—</div>
+        <div class="r" id="menuRole">—</div>
+      </div>
+      <a href="profile.html">My Profile</a>
+      <button class="logout" id="logoutBtn">Log Out</button>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <div class="page-head">
+    <h1>My Profile</h1>
+    <button class="btn-new" id="saveBtn">Save changes</button>
+  </div>
+
+  <div class="profile-card">
+
+    <div class="profile-head">
+      <div class="profile-avatar">
+        <label class="circle" id="avatarCircle" for="avatarUpload">
+          <span id="avatarInitials">—</span>
+          <img id="avatarImg" style="display:none" alt="" />
+        </label>
+        <label class="edit-badge" for="avatarUpload">✎</label>
+        <input type="file" id="avatarUpload" accept="image/*" />
+      </div>
+
+      <div class="profile-fields">
+        <div class="pf-name">
+          <input type="text" id="fldFullName" />
+        </div>
+        <div class="pf-company" id="companyLabel">—</div>
+
+        <div class="pf-row">
+          <label>Job position</label>
+          <input type="text" id="fldJobPosition" />
+        </div>
+        <div class="pf-row">
+          <label>Department</label>
+          <input type="text" id="fldDepartment" />
+        </div>
+
+        <div class="pf-row">
+          <label>Email</label>
+          <input type="email" id="fldEmail" />
+        </div>
+        <div class="pf-row">
+          <label>Manager</label>
+          <input type="text" id="fldManager" />
+        </div>
+
+        <div class="pf-row">
+          <label>Mobile</label>
+          <input type="tel" id="fldPhone" />
+        </div>
+        <div class="pf-row">
+          <label>Location</label>
+          <input type="text" id="fldLocation" />
+        </div>
+
+        <div class="pf-row">
+          <label>Login ID</label>
+          <input type="text" id="fldLoginId" readonly />
+        </div>
+        <div class="pf-row">
+          <label>Employee code</label>
+          <input type="text" id="fldEmpCode" readonly />
+        </div>
+      </div>
+    </div>
+
+    <div class="tabbar" id="tabbar">
+      <button data-tab="resume" class="active">Resume</button>
+      <button data-tab="private">Private Info</button>
+      <button data-tab="salary" id="salaryTabBtn">Salary Info</button>
+      <button data-tab="security">Security</button>
+    </div>
+
+    <!-- RESUME -->
+    <div class="tabpanel active" data-panel="resume">
+      <div class="field-line">
+        <label>About</label>
+        <textarea id="fldAbout" rows="3" placeholder="A short introduction…"></textarea>
+      </div>
+      <div class="field-line">
+        <label>What I love about my job</label>
+        <textarea id="fldLoveAboutJob" rows="3" placeholder="What keeps you motivated…"></textarea>
+      </div>
+      <div class="field-line">
+        <label>My interests and hobbies</label>
+        <textarea id="fldHobbies" rows="3" placeholder="Outside of work…"></textarea>
+      </div>
+
+      <div class="two-block">
+        <div class="chip-field">
+          <label>Skills</label>
+          <div class="chip-list" id="skillsList"></div>
+          <div class="chip-add">
+            <input type="text" id="skillInput" placeholder="Add a skill and press Enter" />
+            <button type="button" id="skillAddBtn">+ Add skill</button>
+          </div>
+        </div>
+        <div class="chip-field">
+          <label>Certifications</label>
+          <div class="chip-list" id="certList"></div>
+          <div class="chip-add">
+            <input type="text" id="certInput" placeholder="Add a certification and press Enter" />
+            <button type="button" id="certAddBtn">+ Add certification</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRIVATE INFO -->
+    <div class="tabpanel" data-panel="private">
+      <div class="form-grid">
+        <div>
+          <div class="field-line"><label>Date of birth</label><input type="date" id="fldDob" /></div>
+          <div class="field-line"><label>Residing address</label><input type="text" id="fldAddress" /></div>
+          <div class="field-line"><label>Nationality</label><input type="text" id="fldNationality" /></div>
+          <div class="field-line"><label>Personal email</label><input type="email" id="fldPersonalEmail" /></div>
+          <div class="field-line">
+            <label>Gender</label>
+            <select id="fldGender">
+              <option value="">—</option>
+              <option>Female</option>
+              <option>Male</option>
+              <option>Non-binary</option>
+              <option>Prefer not to say</option>
+            </select>
+          </div>
+          <div class="field-line">
+            <label>Marital status</label>
+            <select id="fldMaritalStatus">
+              <option value="">—</option>
+              <option>Single</option>
+              <option>Married</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field-line"><label>Date of joining</label><input type="date" id="fldDateOfJoining" /></div>
+        </div>
+        <div>
+          <div class="col-head">Bank details</div>
+          <div class="field-line"><label>Account number</label><input type="text" id="fldBankAccount" /></div>
+          <div class="field-line"><label>Bank name</label><input type="text" id="fldBankName" /></div>
+          <div class="field-line"><label>IFSC code</label><input type="text" id="fldIfsc" /></div>
+          <div class="field-line"><label>PAN no.</label><input type="text" id="fldPan" /></div>
+          <div class="field-line"><label>UAN no.</label><input type="text" id="fldUan" /></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SALARY INFO (admin only) -->
+    <div class="tabpanel" data-panel="salary">
+      <div id="salaryLocked" class="locked-tab" style="display:none;">
+        Salary Info is only visible to Admins.
+      </div>
+
+      <div id="salaryContent">
+        <div class="salary-summary">
+          <div class="field-line" style="margin-bottom:0;">
+            <label>Month wage</label>
+            <input type="number" id="fldWage" min="0" step="100" />
+          </div>
+          <div class="field-line" style="margin-bottom:0;">
+            <label>Yearly wage</label>
+            <input type="text" id="fldYearlyWage" readonly />
+          </div>
+          <div class="field-line" style="margin-bottom:0;">
+            <label>Working days / week</label>
+            <input type="number" id="fldWorkingDays" min="1" max="7" style="width:90px" />
+          </div>
+          <div class="field-line" style="margin-bottom:0;">
+            <label>Break time (hrs)</label>
+            <input type="number" id="fldBreakHours" min="0" step="0.5" style="width:90px" />
+          </div>
+        </div>
+
+        <div class="salary-flag" id="salaryFlag"></div>
+
+        <table class="salary-table">
+          <thead>
+            <tr><th>Salary component</th><th>% (of Basic, Basic itself % of wage)</th><th style="text-align:right">Amount / month</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="label">Basic salary</td>
+              <td><input type="number" id="pctBasic" step="0.01" min="0" max="100" /> % of wage</td>
+              <td class="amount" style="text-align:right" id="amtBasic">—</td>
+            </tr>
+            <tr>
+              <td class="label">House rent allowance</td>
+              <td><input type="number" id="pctHra" step="0.01" min="0" max="100" /> % of basic</td>
+              <td class="amount" style="text-align:right" id="amtHra">—</td>
+            </tr>
+            <tr>
+              <td class="label">Standard allowance</td>
+              <td><input type="number" id="pctStandard" step="0.01" min="0" max="100" /> % of basic</td>
+              <td class="amount" style="text-align:right" id="amtStandard">—</td>
+            </tr>
+            <tr>
+              <td class="label">Performance bonus</td>
+              <td><input type="number" id="pctBonus" step="0.01" min="0" max="100" /> % of basic</td>
+              <td class="amount" style="text-align:right" id="amtBonus">—</td>
+            </tr>
+            <tr>
+              <td class="label">Leave travel allowance</td>
+              <td><input type="number" id="pctLta" step="0.01" min="0" max="100" /> % of basic</td>
+              <td class="amount" style="text-align:right" id="amtLta">—</td>
+            </tr>
+            <tr class="fixed">
+              <td class="label">Fixed allowance</td>
+              <td>wage − total of all components above</td>
+              <td class="amount" style="text-align:right" id="amtFixed">—</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="two-block">
+          <div>
+            <div class="block-head">Provident fund (PF) contribution</div>
+            <table class="salary-table">
+              <tbody>
+                <tr>
+                  <td class="label">Employee</td>
+                  <td><input type="number" id="pctPfEmployee" step="0.01" min="0" max="100" /> % of basic</td>
+                  <td class="amount" style="text-align:right" id="amtPfEmployee">—</td>
+                </tr>
+                <tr>
+                  <td class="label">Employer</td>
+                  <td><input type="number" id="pctPfEmployer" step="0.01" min="0" max="100" /> % of basic</td>
+                  <td class="amount" style="text-align:right" id="amtPfEmployer">—</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div class="block-head">Tax deductions</div>
+            <table class="salary-table">
+              <tbody>
+                <tr>
+                  <td class="label">Professional tax</td>
+                  <td><input type="number" id="fldProfessionalTax" step="1" min="0" /> / month</td>
+                  <td class="amount" style="text-align:right">flat</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECURITY -->
+    <div class="tabpanel" data-panel="security">
+      <div class="form-grid">
+        <div>
+          <div class="field-line"><label>Login ID</label><input type="text" id="secLoginId" readonly /></div>
+          <div class="field-line"><label>Current password</label><input type="password" id="secCurrentPassword" placeholder="Enter current password" /></div>
+          <div class="field-line"><label>New password</label><input type="password" id="secNewPassword" placeholder="Min. 8 characters" /></div>
+          <div class="field-line"><label>Confirm new password</label><input type="password" id="secConfirmPassword" placeholder="Re-enter new password" /></div>
+          <div class="error-msg" id="secError" style="margin-bottom:10px;"></div>
+          <button class="btn-new" id="changePasswordBtn" type="button">Change password</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<div class="save-toast" id="saveToast">Changes saved.</div>
+
+<script src="js/auth-core.js"></script>
+<script src="js/shell.js"></script>
+<script src="js/profile.js"></script>
+</body>
+</html>

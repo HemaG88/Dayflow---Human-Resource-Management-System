@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Employees · Altruistic Deer HRMS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/shell.css" />
+</head>
+<body class="app" data-page="employees">
+
+<header class="topnav">
+  <div class="brand">
+    <div class="mark">AD</div>
+    <div class="name">Altruistic Deer</div>
+  </div>
+
+  <nav>
+    <a href="employees.html" data-tab="employees">Employees</a>
+    <a href="attendance.html" data-tab="attendance">Attendance</a>
+    <a href="timeoff.html" data-tab="timeoff">Time Off</a>
+  </nav>
+
+  <div class="spacer"></div>
+
+  <div class="systray">
+    <span class="since" id="systraySince"></span>
+    <button id="systrayBtn" class="checked-out"><span class="pulse"></span>Check In</button>
+  </div>
+
+  <div class="avatar-wrap">
+    <button class="avatar-btn" id="avatarBtn" aria-haspopup="true" aria-label="Account menu">
+      <span id="avatarDot" class="status-dot absent"></span>
+    </button>
+    <div class="avatar-menu" id="avatarMenu">
+      <div class="who">
+        <div class="n" id="menuName">—</div>
+        <div class="r" id="menuRole">—</div>
+      </div>
+      <a href="profile.html">My Profile</a>
+      <button class="logout" id="logoutBtn">Log Out</button>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <div class="page-head">
+    <h1>Employees</h1>
+    <div class="page-toolbar">
+      <button class="btn-new" id="newBtn">+ New</button>
+      <div class="searchbar">
+        <input type="text" id="searchInput" placeholder="Search employees…" />
+      </div>
+    </div>
+  </div>
+
+  <div class="emp-grid" id="empGrid">
+    <!-- cards injected by employees.js -->
+  </div>
+
+  <div class="legend">
+    <span><i class="present"></i>Present in the office</span>
+    <span>✈️ On leave</span>
+    <span><i class="absent"></i>Absent</span>
+  </div>
+</main>
+
+<!-- view-only employee modal -->
+<div class="modal-backdrop" id="empModalBackdrop">
+  <div class="modal">
+    <div class="modal-head">
+      <button class="close" id="empModalClose" aria-label="Close">✕</button>
+      <div class="photo" id="modalPhoto">—</div>
+      <div class="name" id="modalName">—</div>
+      <div class="role" id="modalRole">—</div>
+      <div class="tag" id="modalStatusTag"><i></i><span></span></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-row"><span class="k">Department</span><span class="v" id="modalDept">—</span></div>
+      <div class="modal-row"><span class="k">Email</span><span class="v" id="modalEmail">—</span></div>
+      <div class="modal-row"><span class="k">Login ID</span><span class="v" id="modalLoginId">—</span></div>
+      <div class="modal-note">View-only. Ask an Admin or HR Officer to update this record.</div>
+    </div>
+  </div>
+</div>
+
+<script src="js/auth-core.js"></script>
+<script src="js/shell.js"></script>
+<script src="js/employees.js"></script>
+</body>
+</html>

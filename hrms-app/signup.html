@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sign Up · Altruistic Deer HRMS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- LEFT: brand stage with live badge preview -->
+  <aside class="stage">
+    <div class="brandmark">
+      <div class="mark">AD</div>
+      <div class="name">Altruistic Deer <b>HRMS</b></div>
+    </div>
+
+    <div>
+      <div class="stage-copy">
+        <p class="eyebrow">Company registration</p>
+        <h1>Every account gets a<br/>traceable staff ID.</h1>
+        <p>As you fill the form, watch your Login ID assemble on the badge below — built from your company, your name, and your year of joining.</p>
+      </div>
+
+      <div class="badge" style="margin-top:26px;" id="badge">
+        <div class="badge-top">
+          <div>
+            <div class="badge-label">Staff badge · preview</div>
+            <div class="badge-id-row">
+              <div>
+                <div class="badge-name" id="badgeName">Your Name</div>
+                <div class="badge-role" id="badgeCompany">Your Company</div>
+              </div>
+            </div>
+          </div>
+          <div class="badge-photo"></div>
+        </div>
+        <div class="badge-code">
+          <div class="code-label">Login ID</div>
+          <div class="code-value" id="badgeCode">
+            <span class="seg company">XX</span><span class="seg initials">XXXX</span><span class="seg year">----</span><span class="seg serial">----</span>
+          </div>
+          <div class="badge-legend">
+            <span><i class="company"></i>Company</span>
+            <span><i class="initials"></i>Name initials</span>
+            <span><i class="year"></i>Join year</span>
+            <span><i class="serial"></i>Serial no.</span>
+          </div>
+        </div>
+        <div class="badge-strip"></div>
+      </div>
+    </div>
+
+    <div class="stage-foot"><span class="dot"></span> IDs are generated the same way when HR adds a new employee.</div>
+  </aside>
+
+  <!-- RIGHT: form -->
+  <main class="formside">
+    <div class="formwrap">
+
+      <div class="mobile-brand">
+        <div class="mark">AD</div>
+        <div class="name">Altruistic Deer HRMS</div>
+      </div>
+
+      <div class="form-head">
+        <p class="kicker">Get started</p>
+        <h2>Register your company</h2>
+        <p>This creates your organization's first Admin account. Individual employees are added later by an Admin or HR Officer — they won't self-register.</p>
+      </div>
+
+      <div class="banner err" id="formBanner"></div>
+
+      <form id="signupForm" novalidate>
+
+        <div class="field">
+          <label for="companyName">Company name <span class="req">*</span></label>
+          <div class="input-wrap">
+            <input type="text" id="companyName" placeholder="e.g. Odoo India" autocomplete="organization" />
+          </div>
+          <div class="error-msg" id="err-companyName"></div>
+        </div>
+
+        <div class="logo-field">
+          <label class="logo-drop" id="logoDrop" for="logoInput" title="Upload company logo">
+            <span id="logoGlyph">⬆</span>
+            <img id="logoPreview" alt="" style="display:none" />
+          </label>
+          <input type="file" id="logoInput" accept="image/*" />
+          <div class="logo-meta">
+            <strong>Company logo</strong>
+            <span>Optional · PNG or JPG</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="fullName">Your full name <span class="req">*</span></label>
+          <div class="input-wrap">
+            <input type="text" id="fullName" placeholder="e.g. Jordan Doyle" autocomplete="name" />
+          </div>
+          <div class="error-msg" id="err-fullName"></div>
+        </div>
+
+        <div class="two-col">
+          <div class="field">
+            <label for="email">Email <span class="req">*</span></label>
+            <div class="input-wrap">
+              <input type="email" id="email" placeholder="you@company.com" autocomplete="email" />
+            </div>
+            <div class="error-msg" id="err-email"></div>
+          </div>
+          <div class="field">
+            <label for="phone">Phone <span class="req">*</span></label>
+            <div class="input-wrap">
+              <input type="tel" id="phone" placeholder="10-digit number" autocomplete="tel" />
+            </div>
+            <div class="error-msg" id="err-phone"></div>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="field">
+            <label for="password">Password <span class="req">*</span></label>
+            <div class="input-wrap">
+              <input type="password" id="password" placeholder="Min. 8 characters" autocomplete="new-password" />
+              <button type="button" class="toggle-visibility" data-target="password" aria-label="Show password">👁</button>
+            </div>
+            <div class="error-msg" id="err-password"></div>
+          </div>
+          <div class="field">
+            <label for="confirmPassword">Confirm password <span class="req">*</span></label>
+            <div class="input-wrap">
+              <input type="password" id="confirmPassword" placeholder="Re-enter password" autocomplete="new-password" />
+              <button type="button" class="toggle-visibility" data-target="confirmPassword" aria-label="Show password">👁</button>
+            </div>
+            <div class="error-msg" id="err-confirmPassword"></div>
+          </div>
+        </div>
+
+        <div class="id-preview">
+          <div>
+            <div class="id-label">Your Login ID will be</div>
+            <div class="id-value" id="idPreviewValue">— fill the fields above —</div>
+          </div>
+          <button type="button" class="copy-btn" id="copyIdBtn">Copy</button>
+        </div>
+
+        <button type="submit" class="btn-primary" id="submitBtn">Create account</button>
+      </form>
+
+      <div class="form-foot">
+        Already have an account? <a href="login.html">Sign in</a>
+      </div>
+
+      <div class="note-box">
+        <div class="glyph">i</div>
+        <p>
+          <strong>How Login IDs work:</strong> company initials + first two letters of your first and last name + join year + a joining-order serial.
+          Example — <strong>OIJODO20220001</strong> = OI (Odoo India) · JO+DO (Jordan Doyle) · 2022 (join year) · 0001 (1st that year).
+          Employees created later by Admins/HR get their password auto-generated, and can change it after signing in.
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+</div>
+
+<script src="js/auth-core.js"></script>
+<script src="js/signup.js"></script>
+</body>
+</html>

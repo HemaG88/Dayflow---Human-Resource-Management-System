@@ -1,0 +1,57 @@
+/* =====================================================
+   Altruistic Deer HRMS — Shared design tokens & reset
+   Used by every screen (auth + post-login shell)
+===================================================== */
+:root{
+  --ink:        #14213D;
+  --ink-2:      #1E2E52;
+  --ink-3:      #2A3D68;
+  --paper:      #FAF8F4;
+  --paper-dim:  #F1EDE3;
+  --line:       #DED5C2;
+  --line-dark:  rgba(255,255,255,.14);
+  --brass:      #C99A4B;
+  --brass-deep: #A97D34;
+  --brass-tint: #F3E4C6;
+  --ok:         #4B7A63;
+  --err:        #B54B3B;
+  --text:       #1B1B1E;
+  --text-dim:   #6B6558;
+  --text-inv:   #F3F1EA;
+  --text-inv-dim: #AFB6CC;
+
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-body:    "Inter", "Segoe UI", sans-serif;
+  --font-mono:    "IBM Plex Mono", "Courier New", monospace;
+
+  --radius-s: 6px;
+  --radius-m: 12px;
+  --radius-l: 22px;
+  --shadow-panel: 0 30px 60px -25px rgba(20,33,61,.45);
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  font-family:var(--font-body);
+  color:var(--text);
+  background:var(--paper-dim);
+  -webkit-font-smoothing:antialiased;
+}
+
+a{ color:inherit; }
+
+button{ font-family:inherit; }
+
+/* focus visibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible{
+  outline:2px solid var(--brass-deep);
+  outline-offset:2px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
+}
